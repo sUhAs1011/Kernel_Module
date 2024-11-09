@@ -1,22 +1,60 @@
-# Kernel_Module
+Here’s a refined and structured description for deploying your kernel module project:
 
-My fourth semester operating systems mini-project where made a kernel module using the C programming language
+---
 
+# Kernel Module: Binary Tree Logger
 
-To deploy the code provided, you'll first need to compile it into a kernel module and then insert it into a running Linux kernel. Here's a breakdown of the process:
+### Overview
+This project, developed as part of the fourth-semester Operating Systems mini-project, is a kernel module written in C. The module logs specific messages within the Linux kernel, providing insights into kernel behavior.
 
-1. **Create Kernel Module File**: Copy the supplied code into a file, for example, binary_tree_logger.c.
+### Deployment Steps
 
-2. **Makefile Creation**: You'll also require a Makefile to build the module. Create a file named Makefile alongside binary_tree_logger.c, containing the necessary directives for compilation.
+1. **Prepare the Kernel Module Code**
+   - Save the provided code in a file, for example, `binary_tree_logger.c`.
 
-3. **Compilation**: Navigate to the directory containing your files and execute the make command. This will compile the kernel module, generating a file named binary_tree_logger.ko if successful.
+2. **Create a Makefile**
+   - Place a `Makefile` alongside `binary_tree_logger.c` with directives to build the module. A typical Makefile might include:
+     ```makefile
+     obj-m += binary_tree_logger.o
 
-4. **Module Insertion**: Once compiled, insert the module into the kernel using the insmod command prefixed with sudo for appropriate permissions.
+     all:
+         make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules
 
-5. **Kernel Log Viewing**: Check the kernel logs using the dmesg command to observe the initialization messages printed by the module.
+     clean:
+         make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+     ```
 
-6. **Module Removal**: When done, remove the module from the kernel with sudo rmmod binary_tree_logger.
+3. **Compile the Kernel Module**
+   - In the terminal, navigate to the directory containing your files.
+   - Run:
+     ```shell
+     make
+     ```
+   - This generates `binary_tree_logger.ko`, the compiled kernel module.
 
-7. **Cleaning Up**: Optionally, to remove compiled files, execute make clean.
+4. **Insert the Module**
+   - Insert the module into the kernel with:
+     ```shell
+     sudo insmod binary_tree_logger.ko
+     ```
 
-It's vital to exercise caution when working with kernel modules, ensuring appropriate permissions and attentiveness to prevent potential system crashes due to incorrect implementation.
+5. **View Kernel Logs**
+   - Check the initialization messages and logs by viewing the kernel logs:
+     ```shell
+     dmesg | tail
+     ```
+
+6. **Remove the Module**
+   - To remove the module safely:
+     ```shell
+     sudo rmmod binary_tree_logger
+     ```
+
+7. **Clean Up**
+   - Optionally, remove compiled files with:
+     ```shell
+     make clean
+     ```
+
+### Caution
+Working with kernel modules requires superuser permissions. Ensure correctness in the module’s implementation to prevent system instability.
