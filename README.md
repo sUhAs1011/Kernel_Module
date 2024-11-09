@@ -1,7 +1,5 @@
 
 
----
-
 # Kernel Module: Binary Tree Logger
 
 ### Overview
