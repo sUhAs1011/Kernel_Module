@@ -1,6 +1,5 @@
+# Kernel Module: Fourth Semester Operating Systems Assignment
 
-
-# Kernel Module: Binary Tree Logger
 
 ### Overview
 This project, developed as part of the fourth-semester Operating Systems mini-project, is a kernel module written in C. The module logs specific messages within the Linux kernel, providing insights into kernel behavior.
